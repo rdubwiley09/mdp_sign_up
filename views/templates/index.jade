@@ -1,0 +1,9 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+extends base
+block main
+  .col-sm-2
+    form(method='POST', role='form', action='/')
+      {{response.csrf_token}}
+      {{wtf.quick_form(response, button_map={'submit':'primary'})}}
+      

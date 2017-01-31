@@ -1,0 +1,120 @@
+body
+  background-color: black
+
+#header
+  width: 100%
+  padding-right: 5%
+  padding-left: 5%
+
+#row-1
+  background-color: purple
+  padding-left: 100px
+  width: 100%
+  display: inline-block
+  margin-left: auto
+  margin-right: auto
+  border-style: solid
+  border-width: 5px
+
+
+#title
+  color: white
+  font-family: Impact
+  font-size: 30px
+  text-shadow: 3px 3px 0px black
+  padding-left: 10px
+  display: inline-block
+  a
+    color: white
+  a:hover
+    text-decoration: none
+    color: OrangeRed
+  a:link
+    text-decoration: none
+
+#right-header
+  margin-top: 20px
+  align: auto
+
+nav
+  list-style: none
+  display: inline
+  vertical-align: middle
+  ul li a
+    color: white
+    font-size: 20px
+    font-family: Open Sans
+    font-weight: bold
+    text-shadow: 3px 3px 0px black
+    padding-right: 5px
+    padding-left: 5px
+  ul li a:hover
+    color: OrangeRed
+    opacity: 1.0
+
+#nav-tabs
+  padding-left: 50px
+  display: inline-block
+  vertical-align: middle
+
+#nav-button
+  display: none
+
+#dropdown
+  display: none
+  list-style: none
+  background-color: purple
+  border-style: solid
+  border-color: black
+  position: fixed
+  vertical-align: middle
+  text-align: left
+  z-index: 2
+  li
+    border-bottom-style: solid
+    padding-top: 5px
+    padding-bottom: 5px
+
+#text
+  position: inline-block
+  background-color: white
+  height: 1000px
+  width: 100%
+
+
+
+
+@media screen and (max-width: 1430px)
+  #title
+    font-size: 25px
+
+  #row-1
+    padding-left: 0px
+
+  #sign-up
+    display: none
+
+  #nav-tabs
+    display: none
+
+  #nav-button
+    display: inline-block
+    font-size: 25px
+    vertical-align: middle
+    text-align: right
+    padding-left: 10px
+    color: white
+    position: relative
+
+
+
+@media screen and (max-width: 410px)
+  #title
+    font-size: 18px
+
+  #nav-button
+    font-size: 18px
+
+  #dropdown
+    li a
+      font-size:15px

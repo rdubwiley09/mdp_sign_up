@@ -2,12 +2,9 @@ $(document).ready(function(){
   $("#nav-button").on('click',function(){
     $("#dropdown").toggleClass("show");
   });
-  $('[data-toggle="tooltip"]').tooltip();
-  $("#myCarousel").carousel();
-  $(".item").click(function(){
-    $("#myCarousel").carousel(5);
-  });
-  $(".left").click(function(){
-    $("myCarousel").carousel("prev");
-  });
+  if($("#organization-data").attr("data")!="None"){
+    $("#organization").val($("#organization-data").attr("data"));
+  }
+  var pathname = window.location.pathname;
+  $("#form").attr("action", pathname)
 });

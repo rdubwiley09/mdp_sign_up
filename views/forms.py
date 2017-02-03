@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, Email, Length
 from wtforms_alchemy import PhoneNumberField
 
 class SignUp(FlaskForm):
-    organization = StringField('Organization', validators=[DataRequired()], render_kw={"placeholder": "Organization"})
+    event = StringField('Event', validators=[DataRequired()], render_kw={"placeholder": "Event"})
     first_name = StringField('First Name', validators=[DataRequired()], render_kw={"placeholder": "First Name"})
     last_name = StringField('Last Name', validators=[DataRequired()], render_kw={"placeholder": "Last Name"})
     phone_number = PhoneNumberField(validators=[DataRequired()], render_kw={"placeholder": "Phone Number"})
@@ -17,7 +17,7 @@ class SignUp(FlaskForm):
     submit = SubmitField('Sign Up!')
 
 class SignIn(FlaskForm):
-    organization = StringField('Organization', validators=[DataRequired()], render_kw={"placeholder": "Organization"})
+    event = StringField('Event', validators=[DataRequired()], render_kw={"placeholder": "Event"})
     first_name = StringField('First Name', validators=[DataRequired()], render_kw={"placeholder": "First Name"})
     last_name = StringField('Last Name', validators=[DataRequired()], render_kw={"placeholder": "Last Name"})
     phone_number = PhoneNumberField(validators=[DataRequired()], render_kw={"placeholder": "Phone Number"})

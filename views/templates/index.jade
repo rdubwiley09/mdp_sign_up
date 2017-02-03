@@ -2,8 +2,14 @@
 
 extends base
 block main
-  .col-sm-2
-    form(id="form", method='POST', role='form')
-      {{wtf.quick_form(response, button_map={'submit':'primary'})}}
-    meta(id="organization-data", data="{{organization}}")
-      
+  div.outer
+    div.main
+      .row
+        .col-sm-2
+          h2 {{title}}
+      .row.form-area
+        .col-sm-2
+          form(id="form", method='POST', role='form')
+            {{wtf.quick_form(response, button_map={'submit':'primary'})}}
+          meta(id="event-data", data="{{event}}")
+        

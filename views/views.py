@@ -14,7 +14,7 @@ app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
 Bootstrap(app)
 
 class SignInRecord(db.Model):
-    __tablename__ = 'MI4RevSignIn'
+    __tablename__ = 'sign_in'
     id = db.Column(db.Integer, primary_key=True)
     event = db.Column(db.Text)
     first_name = db.Column(db.Text)
@@ -35,7 +35,7 @@ class SignInRecord(db.Model):
         return "{'first_name': '%s', 'last_name': '%s', 'email': '%s'}" %(self.first_name, self.last_name, self.email)
 
 class SignUpRecord(db.Model):
-    __tablename__ = 'MI4RevSignUp'
+    __tablename__ = 'sign_up'
     id = db.Column(db.Integer, primary_key=True)
     event = db.Column(db.Text)
     first_name = db.Column(db.Text)

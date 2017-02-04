@@ -135,7 +135,7 @@ def question():
                                            form_data['first_name'],
                                            form_data['last_name'],
                                            None,
-                                           form_data['event'],
+                                           form_data['email'],
                                            None,
                                            None,
                                            None,

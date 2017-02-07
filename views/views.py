@@ -67,6 +67,19 @@ class SignUpRecord(db.Model):
     def __repr__(self):
         return "{'first_name': '%s', 'last_name': '%s', 'email': '%s'}" %(self.first_name, self.last_name, self.email)
 
+@app.route('/', methods = ['GET', 'POST'])
+def home():
+    if request.method == 'POST':
+        if request.form['submit'] == 'Sign In':
+            return redirect(url_for('signin'))
+        elif request.form['submit'] == 'Sign Up':
+            return redirect(url_for('signup'))
+        else:
+            flash("Probably an error. Here's the sign-in page")
+            return redirect(url_for('signin'))
+    else:
+        return render_template('/home.jade')
+
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
     signup = SignUp(csrf_enable=False)
@@ -128,7 +141,7 @@ def signin():
 def question():
     if request.method == 'POST':
         if request.form['submit'] == 'Yes':
-            form_data = session.get('form_data')
+            form_data = session.get('form_data', None)
             if form_data:
                 time = datetime.now()
                 new_sign_up = SignUpRecord(form_data['event'],
@@ -144,9 +157,11 @@ def question():
                                            False,
                                            time
                                            )
-            db.session.add(new_sign_up)
-            db.session.commit()
-            flash("We've recorded your membership")
+                db.session.add(new_sign_up)
+                db.session.commit()
+                flash("We've recorded your membership")
+            else:
+                flash("Please sign in first")
             return redirect(url_for('signin'))
         elif request.form['submit'] == 'Sign-up':
             flash("Please fill out the form below")

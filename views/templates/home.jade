@@ -1,0 +1,15 @@
+extends base
+block main
+  div.outer
+    div.main
+      .row
+        .col-sm-2
+          h2 Welcome to the Michigan for Revolution Sign Up App
+      .row.form-area
+        .col-sm-2
+          form(id = "form",method='POST', role='form')
+            ul
+              li
+                input.btn.btn-success.submit(type="submit", name="submit", value="Sign In") Sign-in
+              li
+                input.btn.btn-primary.submit(type="submit", name="submit", value="Sign Up") Sign-up

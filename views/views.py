@@ -83,7 +83,11 @@ def home():
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
     signup = SignUp(csrf_enable=False)
-    event = session.get('event')
+    form_data = session.get('form_data')
+    if form_data:
+        event = form_data['event']
+    else:
+        event = None
     if signup.validate_on_submit():
         session['event'] = signup.event.data
         time = datetime.now()

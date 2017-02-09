@@ -154,7 +154,7 @@ def question():
                                            None,
                                            False,
                                            False,
-                                           False,
+                                           True,
                                            time
                                            )
                 db.session.add(new_sign_up)

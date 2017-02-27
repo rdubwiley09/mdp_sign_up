@@ -19,5 +19,4 @@ block main
         .col-sm-2
           form(id="form", method='POST', role='form')
             {{wtf.quick_form(response, button_map={'submit':'primary'})}}
-          meta(id="event-data", data="{{event}}")
         

@@ -5,6 +5,7 @@ from views.forms import SignUp
 from flask_bootstrap import Bootstrap
 from datetime import datetime
 from sqlalchemy_utils import PhoneNumberType
+from views.send_email import sendEmail, message
 
 app  = Flask(__name__)
 app.config.from_object('config')
@@ -78,8 +79,9 @@ def signup():
                                    None)
         db.session.add(new_sign_up)
         db.session.commit()
+        sendEmail(signup.email.data, signup.first_name.data, message)
         return redirect(url_for('finish'))
-    return render_template('/index.jade', response=signup, title = "Michigan for Revolution Sign-up")
+    return render_template('/index.jade', response=signup, title = "Sign-up for the MDP in 30 seconds")
 
 @app.route("/finish", methods=['GET', 'POST'])
 def finish():

@@ -1,5 +1,5 @@
 .outer {
-  background-color: #29AB94;
+  background-color: #314bbf;
   height: 200vh;
 }
 
@@ -14,6 +14,12 @@ h2 {
   font-size: 16px;
   padding-left: 2px;
   padding-right: 2px;
+  padding-top: 10px;
+
+}
+
+.header {
+  color: white;
   font-weight: bolder;
 }
 
@@ -23,7 +29,7 @@ h2 {
   padding-right: 5px;
   padding-bottom: 20px;
   padding-top: 20px;
-  background-color: #29AB94;
+  background-color: #314bbf;
   color: white;
   border: 2px;
   border-radius: 5px;
@@ -68,4 +74,24 @@ li {
   margin-top: 30px;
   font-weight: bold;
   font-size: 20px;
+}
+
+.footer {
+  width: 300px;
+  text-align: center;
+  font-size: 16px;
+  padding-left: 2px;
+  padding-right: 2px;
+  margin-top: 30px;
+  font-weight: bolder;
+  color: white;
+}
+
+#back {
+  text-align: center;
+  height: 100px;
+  width: 300px;
+  margin-top: 50px;
+  font-weight: bold;
+  font-size: 30px;
 }

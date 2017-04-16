@@ -4,7 +4,6 @@ import requests
 def sendEmail(email, name, text):
 	import smtplib, string
 
-	fromaddr = 'ReformMiDems@gmail.com'
 	toaddrs  = [email, 'wileyrya@gmail.com']
 	subj = "Thank you for signing up!"
 
@@ -15,7 +14,7 @@ def sendEmail(email, name, text):
 		"https://api.mailgun.net/v3/reformmidems.com/messages",
 		auth=("api", api_key),
 		data = {
-			"from": "no-reply <mailgun@reformmidems.com>",
+			"from": "Ryan Wiley <mailgun@reformmidems.com>",
 			"to": toaddrs,
 			"subject": subj,
 			"text": msg

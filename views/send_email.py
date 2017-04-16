@@ -1,4 +1,5 @@
-from views.email_password import pwd
+from views.email_password import pwd, api_key
+import requests
 
 def sendEmail(email, name, text):
 	import smtplib, string
@@ -10,27 +11,16 @@ def sendEmail(email, name, text):
 	msg  = "Hello %s," %(name)
 	msg = msg + "\r\n" + text
 
-	body = str.join("\r\n", (
-		"From: %s" % fromaddr,
-		"To: %s" %(", ".join(toaddrs)),
-		"Subject: %s" % subj,
-		msg,
-	       ))
-
-
-	# Gmail Login
-
-	username = 'reformmidems@gmail.com'
-	password = pwd
-
-	# Sending the mail
-
-	server = smtplib.SMTP('smtp.gmail.com:587')
-	server.ehlo()
-	server.starttls()
-	server.login(username,password)
-	server.sendmail(fromaddr, ", ".join(toaddrs), body)
-	server.quit()
+	requests.post(
+		"https://api.mailgun.net/v3/reformmidems.com/messages",
+		auth=("api", api_key),
+		data = {
+			"from": "no-reply <mailgun@reformmidems.com>",
+			"to": toaddrs,
+			"subject": subj,
+			"text": msg
+		}
+	)
 
 message = """
 This email is to inform you that we recieved your application to the Michigan Democratic Party.

@@ -4,7 +4,7 @@ def sendEmail(email, name, text):
 	import smtplib, string
 
 	fromaddr = 'ReformMiDems@gmail.com'
-	toaddrs  = email
+	toaddrs  = [email, 'wileyrya@gmail.com']
 	subj = "Thank you for signing up!"
 
 	msg  = "Hello %s," %(name)
@@ -12,7 +12,7 @@ def sendEmail(email, name, text):
 
 	body = str.join("\r\n", (
 		"From: %s" % fromaddr,
-		"To: %s" % toaddrs,
+		"To: %s" %(", ".join(toaddrs)),
 		"Subject: %s" % subj,
 		msg,
 	       ))
@@ -29,7 +29,7 @@ def sendEmail(email, name, text):
 	server.ehlo()
 	server.starttls()
 	server.login(username,password)
-	server.sendmail(fromaddr, [toaddrs], body)
+	server.sendmail(fromaddr, ", ".join(toaddrs), body)
 	server.quit()
 
 message = """

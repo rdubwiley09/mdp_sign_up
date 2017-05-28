@@ -86,3 +86,7 @@ def signup():
 @app.route("/finish", methods=['GET', 'POST'])
 def finish():
     return render_template('/finish.jade')
+
+@app.route("/about")
+def about():
+    return render_template("/about.jade")

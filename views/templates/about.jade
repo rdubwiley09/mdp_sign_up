@@ -1,0 +1,22 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+extends base
+block main
+  div.outer
+    div.main
+      .row
+        .col-xl-4
+        .col-xl-4
+          h2.header(style="font-size: 30px;") How It Works
+          h2.header 1) Fill out the application
+          h2.header 2) We enter your data into the MDP's paper application
+          h2.header 3) Within a few weeks we drop it off at the MDP office in Lansing
+          h2.header 4) You shall recieve an email with an effective membership datetime
+          h2.header 5) After a year passes we send you an email to remind you to renew your membership
+          br
+          a(href='/') 
+            button.btn.btn-success#back Go back  
+          footer
+            p.footer Built by Reform MI Dems
+            p.footer Contact Ryan Wiley with any questions: wileyrya@gmail.com
+        .col-xl-4  

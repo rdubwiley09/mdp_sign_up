@@ -17,8 +17,8 @@ class SignUp(FlaskForm):
     date_of_birth = DateField('Date of Birth', render_kw={"class":"datepicker"})
     gender = StringField('Gender', render_kw={"placeholder": "Gender"})
     registered_to_vote = BooleanField('Registered in Michigan?')
-    receive_emails = BooleanField('Recieve Emails?')
-    receive_texts = BooleanField('Recieve Texts?')
+    receive_emails = BooleanField('Receive Emails?')
+    receive_texts = BooleanField('Receive Texts?')
     submit = SubmitField('Sign Up!')
 
 class EmailForm(FlaskForm):

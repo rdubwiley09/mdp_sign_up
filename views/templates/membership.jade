@@ -1,0 +1,30 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+extends base
+block main
+  div.outer
+    div.main
+      .row
+        .col-xl-4
+        .col-xl-8
+          h2.header {{title}}
+          a.about(href = "/", style="text-decoration: underline red;")
+            h3(style="text-decoration:underline;") Go Back
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          ul.flash
+            {% for message in messages %}
+            li {{ message }}
+            {% endfor %}  
+          {% endif %}
+          {% endwith %}
+        .col-xl-4
+      .row.form-area
+        .col-xl-4  
+        .col-xl-4          
+          form(id="form", method='POST', role='form')
+            {{wtf.quick_form(response, button_map={'submit':'success'})}}
+          footer
+            p.footer Built by Reform MI Dems
+            p.footer Contact Ryan Wiley with any questions: wileyrya@gmail.com
+        .col-xl-4

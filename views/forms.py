@@ -20,3 +20,7 @@ class SignUp(FlaskForm):
     receive_emails = BooleanField('Recieve Emails?')
     receive_texts = BooleanField('Recieve Texts?')
     submit = SubmitField('Sign Up!')
+
+class EmailForm(FlaskForm):
+    email = StringField('Email', validators=[Email(), DataRequired()], render_kw={"placeholder": "Email"})
+    submit = SubmitField('Send Email')

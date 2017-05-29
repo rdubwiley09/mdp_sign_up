@@ -9,7 +9,9 @@ block main
         .col-xl-8
           h2.header {{title}}
           a.about(href = "/about", style="text-decoration: underline red;")
-            h3 How it works
+            h3(style="text-decoration: underline;") How it works
+          a.about(href = "/membership", style="text-decoration: underline red;")
+            h3(style="text-decoration: underline;") Check Your Membership
           {% with messages = get_flashed_messages() %}
           {% if messages %}
           ul.flash

@@ -1,11 +1,13 @@
 from flask import Flask, request, render_template, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from views.forms import SignUp
+from views.forms import SignUp, EmailForm
 from flask_bootstrap import Bootstrap
 from datetime import datetime
 from sqlalchemy_utils import PhoneNumberType
-from views.send_email import sendEmail, message
+from views.send_email import sendEmail, message, fail_message, successMessage, not_dropped_off
+from ast import literal_eval
+from dateutil.relativedelta import relativedelta
 
 app  = Flask(__name__)
 app.config.from_object('config')
@@ -53,7 +55,7 @@ class SignUpRecord(db.Model):
         self.drop_off_time = drop_off_time
 
     def __repr__(self):
-        return "{'first_name': '%s', 'last_name': '%s', 'email': '%s'}" %(self.first_name, self.last_name, self.email)
+        return "{'first_name': '%s', 'last_name': '%s', 'email': '%s', 'drop_off_time': '%s'}" %(self.first_name, self.last_name, self.email, self.drop_off_time)
 
 @app.route("/", methods=['GET', 'POST'])
 def signup():
@@ -79,8 +81,12 @@ def signup():
                                    None)
         db.session.add(new_sign_up)
         db.session.commit()
-        sendEmail(signup.email.data, signup.first_name.data, message)
+        subj = "Thank you for signing up!"
+        sendEmail(signup.email.data, signup.first_name.data, subj, message, False)
         return redirect(url_for('finish'))
+    else:
+        if request.method == "POST":
+            flash("If not on Chrome: try entering date of birth as: yyyy-mm-dd")
     return render_template('/index.jade', response=signup, title = "Sign-up for the MDP in 30 seconds")
 
 @app.route("/finish", methods=['GET', 'POST'])
@@ -90,3 +96,25 @@ def finish():
 @app.route("/about")
 def about():
     return render_template("/about.jade")
+
+@app.route("/membership", methods=['GET', 'POST'])
+def sendMessage():
+    emform = EmailForm()
+    if emform.validate_on_submit():
+        records = literal_eval(str(SignUpRecord.query.filter_by(email=emform.email.data).all()))
+        if records:
+            data = []
+            for item in records:
+                if item['drop_off_time'] != "None":
+                    data.append(item)
+            try:
+                record = data[-1]
+                expiration = datetime.strptime(record['drop_off_time'].split(" ")[0], '%Y-%m-%d') + relativedelta(years=1)
+                sendEmail(emform.email.data, record['first_name'], "Membership Verification", successMessage(record['first_name'], record['last_name'], str(expiration.strftime('%m-%d-%Y'))), False)
+            except Exception as e:
+                record = records[-1]
+                sendEmail(emform.email.data, record['first_name'], "Membership Verfication", not_dropped_off, False)
+        else:
+            sendEmail(emform.email.data, "Recipient", "Membership Verification (Failure)", fail_message, False)
+        flash("Email Sent!")
+    return render_template('/membership.jade', response=emform, title = "Check Your MDP Registration Status")

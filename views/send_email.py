@@ -1,4 +1,4 @@
-from views.email_password import pwd, api_key
+from views.email_password import api_key
 import requests
 
 def sendEmail(email, name, subj, text, anonymous):

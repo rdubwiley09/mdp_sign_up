@@ -17,14 +17,15 @@ block main
           ul.flash
             {% for message in messages %}
             li {{ message }}
-            {% endfor %}  
+            {% endfor %}
           {% endif %}
           {% endwith %}
         .col-xl-4
       .row.form-area
-        .col-xl-4  
         .col-xl-4
-          h2.header We have temporarily disabled the form due to the upcoming convention deadline.          
+        .col-xl-4
+          h2.header We have decided to suspend the membership project. Read more:&nbsp
+            a.about(href="https://medium.com/@ryanjazzwiley/why-reform-mi-dems-is-ending-the-mdp-sign-up-project-b7d8ca18746e", style="text-decoration: underline red;") here
           form(id="form", method='POST', role='form')
             // {{wtf.quick_form(response, button_map={'submit':'success'})}}
           footer
